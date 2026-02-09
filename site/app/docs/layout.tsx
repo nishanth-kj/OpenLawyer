@@ -24,9 +24,9 @@ export default function DocsLayout({
                             <ul className="space-y-2">
                                 {section.links.map((link, j) => (
                                     <li key={j}>
-                                        <a href="#" className="text-sm transition-colors hover:text-blue-400">
+                                        <Link href="/docs" className="text-sm transition-colors hover:text-blue-400">
                                             {link}
-                                        </a>
+                                        </Link>
                                     </li>
                                 ))}
                             </ul>

@@ -10,8 +10,8 @@ export default function Navbar() {
     const [isOpen, setIsOpen] = React.useState(false);
 
     const navLinks = [
-        { name: "Features", href: "#features" },
-        { name: "Community", href: "#community" },
+        { name: "Features", href: "/#features" },
+        { name: "Community", href: "/#community" },
         { name: "Docs", href: "/docs" },
         { name: "GitHub", href: "https://github.com/nishanth-kj/OpenLawyer", external: true },
     ];
@@ -27,14 +27,25 @@ export default function Navbar() {
                 {/* Desktop Nav */}
                 <div className="hidden items-center gap-6 md:flex">
                     {navLinks.map((link) => (
-                        <a
-                            key={link.name}
-                            href={link.href}
-                            target={link.external ? "_blank" : undefined}
-                            className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-                        >
-                            {link.name}
-                        </a>
+                        link.external ? (
+                            <a
+                                key={link.name}
+                                href={link.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                            >
+                                {link.name}
+                            </a>
+                        ) : (
+                            <Link
+                                key={link.name}
+                                href={link.href}
+                                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                            >
+                                {link.name}
+                            </Link>
+                        )
                     ))}
                     <div className="h-4 w-px bg-border/50" />
                     <ThemeToggle />
@@ -65,15 +76,27 @@ export default function Navbar() {
             >
                 <div className="bg-background/95 backdrop-blur-md px-6 py-8 flex flex-col gap-6">
                     {navLinks.map((link) => (
-                        <a
-                            key={link.name}
-                            href={link.href}
-                            target={link.external ? "_blank" : undefined}
-                            onClick={() => setIsOpen(false)}
-                            className="text-lg font-medium text-muted-foreground transition-colors hover:text-primary"
-                        >
-                            {link.name}
-                        </a>
+                        link.external ? (
+                            <a
+                                key={link.name}
+                                href={link.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={() => setIsOpen(false)}
+                                className="text-lg font-medium text-muted-foreground transition-colors hover:text-primary"
+                            >
+                                {link.name}
+                            </a>
+                        ) : (
+                            <Link
+                                key={link.name}
+                                href={link.href}
+                                onClick={() => setIsOpen(false)}
+                                className="text-lg font-medium text-muted-foreground transition-colors hover:text-primary"
+                            >
+                                {link.name}
+                            </Link>
+                        )
                     ))}
                     <Button asChild size="lg" className="w-full rounded-xl shadow-lg shadow-indigo-500/20">
                         <a href="https://github.com/nishanth-kj/OpenLawyer" target="_blank">
